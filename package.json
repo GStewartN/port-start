@@ -4,7 +4,7 @@
   "description": "portfolio app",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "start": "webpack-dev-server"
   },
   "author": "Nathan Stewart",

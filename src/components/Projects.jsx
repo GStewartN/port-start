@@ -1,13 +1,43 @@
 import React from "react";
+import { getRepositories } from "./../actions";
+import repoList from "./../reducers/index";
+import { connect } from "react-redux";
 
-function Projects(){
-  return (
-    <div>
+class Projects extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler(event){
+    event.preventDefault();
+    this.props.dispatch(getRepositories());
+  };
+
+  render(){
+    return (
       <div>
-        <p>This component will eventually contain the body of the app with the main project display.</p>
+        <div>
+          <button onClick={this.clickHandler}>Show Github Repos</button>
+          <p>{this.props.state.name}</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default Projects;
+const mapStateToProps = state => {
+  let info;
+  if (!state.isFetching) {
+    info = {
+      name: state.name,
+    }
+  }
+  return {
+    state: info
+  }
+}
+
+
+export default connect(mapStateToProps)(Projects);
