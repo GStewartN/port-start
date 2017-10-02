@@ -21,7 +21,7 @@ class Projects extends React.Component {
       <div>
         <div>
           <button onClick={this.clickHandler}>Show Github Repos</button>
-          {this.props.state.map(repo => <div><h3>{repo.name}</h3><a href="{repo.link}">See Github Repository</a></div>)}
+          {this.props.state.map((repo, index) => <div key={index}><h3>{repo.name}</h3><a href={repo.link}>See Github Repository</a></div>)}
         </div>
       </div>
     );
