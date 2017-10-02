@@ -21,6 +21,7 @@ class Projects extends React.Component {
       <div>
         <div>
           <button onClick={this.clickHandler}>Show Github Repos</button>
+          {this.props.state.map(repo => <div><h3>{repo.name}</h3><a href="{repo.link}">See Github Repository</a></div>)}
         </div>
       </div>
     );
@@ -29,12 +30,6 @@ class Projects extends React.Component {
 
 const mapStateToProps = state => {
   const repoList = state.repoList;
-  if (!state.isFetching) {
-    const repo = {
-      name: state.name,
-      link: state.link
-    }
-  }
   return {
     state: repoList
   }

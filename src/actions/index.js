@@ -32,7 +32,6 @@ export function getRepositories(dispatch){
       repoList.push(repo)
       }
       dispatch(receiveRepos(repoList));
-      console.log(repoList);
     });
   };
 }
