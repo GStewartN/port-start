@@ -7,15 +7,18 @@ const repoList = (state = [], action) => {
     case types.REQUEST_REPOS:
       newState = {
         isFetching: true,
+        repoList: []
       };
     return newState;
   case types.RECEIVE_REPOS:
     newState = {
       isFetching: false,
+      repoList
     };
     return newState;
   default:
     return state;
+    console.log(newState);
   }
 }
 

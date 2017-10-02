@@ -9,13 +9,14 @@ export const requestRepos = () => ({
 });
 
 export const receiveRepos = (repoList) => ({
-  type: types.RECEIVE_REPOS
+  type: types.RECEIVE_REPOS,
+  repoList
 });
 
 export function getRepositories(dispatch){
   return function(dispatch){
     dispatch(requestRepos());
-    return fetch("https://api.github.com/user/repos?access_token=" + "apiKey").then(
+    return fetch("https://api.github.com/users/GStewartN/repos").then(
       response => response.json(),
       error => console.log("ERROR OCCURED.", error)
     ).then(function(json){
@@ -31,6 +32,7 @@ export function getRepositories(dispatch){
       repoList.push(repo)
       }
       dispatch(receiveRepos(repoList));
+      console.log(repoList);
     });
   };
 }

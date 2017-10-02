@@ -12,11 +12,11 @@ class Projects extends React.Component {
 
   clickHandler(event){
     event.preventDefault();
-    this.props.dispatch(getRepositories());
-    console.log(repoList);
+    this.props.dispatch(getRepositories(repoList));
   };
 
   render(){
+    console.log(this.props.state);
     return (
       <div>
         <div>
@@ -28,15 +28,15 @@ class Projects extends React.Component {
 }
 
 const mapStateToProps = state => {
-  let repo;
+  const repoList = state.repoList;
   if (!state.isFetching) {
-    repo = {
+    const repo = {
       name: state.name,
       link: state.link
     }
   }
   return {
-    state: repo
+    state: repoList
   }
 }
 
