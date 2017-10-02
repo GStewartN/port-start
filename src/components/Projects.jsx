@@ -13,6 +13,7 @@ class Projects extends React.Component {
   clickHandler(event){
     event.preventDefault();
     this.props.dispatch(getRepositories());
+    console.log(repoList);
   };
 
   render(){
@@ -20,7 +21,6 @@ class Projects extends React.Component {
       <div>
         <div>
           <button onClick={this.clickHandler}>Show Github Repos</button>
-          <p>{this.props.state.name}</p>
         </div>
       </div>
     );
@@ -28,16 +28,16 @@ class Projects extends React.Component {
 }
 
 const mapStateToProps = state => {
-  let info;
+  let repo;
   if (!state.isFetching) {
-    info = {
+    repo = {
       name: state.name,
+      link: state.link
     }
   }
   return {
-    state: info
+    state: repo
   }
 }
-
 
 export default connect(mapStateToProps)(Projects);

@@ -3,14 +3,14 @@ import c from "./../../src/constants";
 
 describe("Repo reducer", () => {
   let action;
-  const repoList = {
+  const repoList = {[
     name: "AMA",
     id: 0
-  };
+  ]};
 
-test("should return equivalent state if no action type is recognized", () => {
-  expect(repoList([], { type: null
-  })).toEqual([]);
-});
+  test("should return equivalent state if no action type is recognized", () => {
+    expect(repoList([], { type: null
+    })).toEqual([]);
+  });
 
 });

@@ -4,27 +4,33 @@ import apiKey from "./../constants/apiKeys";
 import v4 from "uuid/v4";
 
 export const requestRepos = () => ({
-  type: types.REQUEST_REPOS
+  type: types.REQUEST_REPOS,
+  repoList: []
 });
 
-export const receiveRepos = () => ({
+export const receiveRepos = (repoList) => ({
   type: types.RECEIVE_REPOS
 });
 
 export function getRepositories(dispatch){
   return function(dispatch){
-    const localRepoId = v4();
-    dispatch(getRepositories());
+    dispatch(requestRepos());
     return fetch("https://api.github.com/user/repos?access_token=" + "apiKey").then(
       response => response.json(),
       error => console.log("ERROR OCCURED.", error)
     ).then(function(json){
-      if (json.name){
-        console.log(json.name);
-        dispatch(receiveRepos());
-      } else {
-        console.log("NO DICE");
+      let repoList = [];
+      for (var i = 0; i < json.length; i ++){
+        var name = json[i].name;
+        var link = json[i].html_url;
+      const repo = {
+        name: name,
+        link: link,
+        id: v4()
       }
-    })
-  }
+      repoList.push(repo)
+      }
+      dispatch(receiveRepos(repoList));
+    });
+  };
 }
